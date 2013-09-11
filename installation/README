@@ -1,0 +1,105 @@
+  这是一个支持几乎所有Linux版本以及FreeBSD系统的postfix全自动安装shell脚本，该脚本能自动下载、编译、安装、配置所依赖的相关软件，让postfix的安装变得轻松而快捷。po
+
+历史事件：
+
+  2001年的时候我写了一个Qmail_setup-vxxxxx.tar.gz，每天都很多人下载，而Qmail这玩意由于已经停止了更新，让我比较失望。在2003年后连我自己都没什么心情来更新Qmail_setup了，在我用了长达8年的Qmail以后，我也开始转到postfix下了，所以顺便一块推出Postfix_setup-vxxxxx.tar.gz，这个脚本比当年Qmail_setup要智能化很多。当然这个脚本是自由的，公开的，而且我决定谁都可以修改这个脚本，并且完善它。但是我希望的是，如果您真有心加入我的这个行列，请加入我的这个项目，共同维护这个统一的版本。
+
+
+2011年4月18号：
+
+增加extmail的WEB mail系统，apache这样的软件请自行安装。
+
+
+
+功能介绍：
+
+1、软件自动下载，当然你可以自己下载了放到src目录里。
+
+2、系统帐户、邮件帐户分离。
+
+3、支持smtp/pop3。
+
+4、支持虚拟域。
+
+5、使用我写的脚本来管理域和用户。
+
+6、扩展性强，如果你想增加其他功能，可以随时调整。
+
+7、模块化安装和配置，让已经安装了一部分软件的朋友能自动跳过安装。
+
+
+
+开始安装：
+
+tar xzf postfix_setup-v.tar.gz
+
+cd postfix_setup
+
+chmod 755 setup
+
+
+
+菜鸟安装：
+
+如果你什么都不懂，那还是用以下方法吧：
+
+安装所有模块：
+
+./setup install ALL
+
+配置所有模块：
+
+./setup config ALL
+
+
+
+中级安装：
+
+如果你了解一部分，而且已经尝试过安装了一些东西，但是却不知道如何配置请使用
+
+以下命令自己选择性操作：
+
+帮助：
+
+./setup
+
+安装指定模块：
+
+./setup install sasl
+
+配置指定模块：
+
+./setup config sasl
+
+你还可以修改你的邮件存放路径：
+
+vi setup
+
+MAILBOX_BASE=/home/mailbox
+
+修改这个路径就OK了。
+
+
+
+高级安装：
+
+你其实已经懂了，不过有点懒而已，那么你可以随便定制自己需要的啦。
+
+MAILBOX_BASE=/home/mailbox
+
+UID=60000
+
+GID=60000
+
+POSTFIX='postfix-2.7.2'
+
+MYSQL='mysql-5.1.54'
+
+SASL='cyrus-sasl-2.1.23'
+
+AUTHDAEMON='courier-authlib-0.63.0'
+
+IMAP='courier-imap-4.8.1'
+
+当然对于软件版本的修改仅Linux有效，FreeBSD环境下软件版本由ports来决定。
+
